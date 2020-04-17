@@ -92,6 +92,7 @@ GEM
       railties (>= 3.2, < 6.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
+    htmlbeautifier (1.3.1)
     i18n (1.8.2)
       concurrent-ruby (~> 1.0)
     jbuilder (2.10.0)
@@ -234,7 +235,11 @@ DEPENDENCIES
   capybara (>= 2.15)
   client_side_validations
   devise
+<<<<<<< HEAD
   font-awesome-rails
+=======
+  htmlbeautifier
+>>>>>>> 35d52c7ae23d3ac22a0221278976ac6c959bfab1
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
