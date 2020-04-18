@@ -22,6 +22,9 @@ gem 'jbuilder', '~> 2.7'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
 
+gem "font-awesome-rails"
+
+
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
@@ -57,3 +60,4 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #devise gem for authentication
 gem 'devise'
 
+gem 'htmlbeautifier'

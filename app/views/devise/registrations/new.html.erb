@@ -1,29 +1,53 @@
-<h2>Sign up</h2>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name),:validate=>true)  do |f| %>
+  <div class="card bg-light">
+  <article class="card-body mx-auto" style="max-width: 400px;">
+    <h4 class="card-title mt-3 text-center">Create Account</h4>
+	  <p class="text-center">Get started with your free account</p>
+    <p>
+      <a href="" class="btn btn-block btn-social btn-danger"> <i class="fa fa-google"></i>   Login via Google</a>
+      <a href="" class="btn btn-block btn-facebook"> <i class="fa fa-facebook-f"></i>   Login via facebook</a>
+	  </p>
+    <p class="divider-text">
+        <span class="bg-light">OR</span>
+    </p>
 
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group input-group" >
+      <%= f.text_field :name , class:"form-control", placeholder:"Enter Name" %>
+      <label for="user_email" class="message" hidden>has already been taken</label>
+    </div>
 
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
+    <div class="form-group input-group">
+        <%= f.email_field :email ,class:"form-control",placeholder:"Enter Email"%>
+    </div>
+    
 
-  <div class="actions">
-    <%= f.submit "Sign up" %>
+    <div class="form-group input-group">
+      <% if @minimum_password_length %>
+      <% end %><br />
+
+      <%= f.password_field :password, autocomplete: "new-password",class:"form-control",placeholder:"Enter Password",id:"password" %>
+    </div>
+
+    <div class="form-group input-group">
+      
+      <%= f.password_field :password_confirmation, autocomplete: "new-password",class:"form-control",placeholder:"confirm Password",id:"confirmPassword" %>
+    </div>
+
+    
+
+    <div class="upload-btn-wrapper">
+      <button class="uploadbtn btn-success"><i class="fa fa-camera"></i></button>
+      <%= f.file_field :image,class:"form-control",placeholder:"upload Image" %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit "Sign up",class:"btn btn-primary btn-block"%>
+    </div>
+    <p class="text-center">Have an account? <%= render "devise/shared/links" %>
+  </article>
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+
