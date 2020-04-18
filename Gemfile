@@ -28,6 +28,13 @@ gem 'jbuilder', '~> 2.7'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
+#font_awesome
+gem "font-awesome-rails"
+
+#jQuery
+gem 'jquery-rails'
+#form validation
+gem 'client_side_validations'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -58,5 +65,10 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #devise gem for authentication
 gem 'devise'
 
+
 # Use Omniauth Facebook plugin
 gem 'omniauth-facebook', '~> 4.0'
+# Use Omniauth Google plugin
+gem 'omniauth-google-oauth2', '~> 0.4.1'
+gem 'htmlbeautifier'
+

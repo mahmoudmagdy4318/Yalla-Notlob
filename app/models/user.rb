@@ -4,13 +4,22 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable,
          
-         :omniauthable, omniauth_providers: [:facebook]
+         :omniauthable, omniauth_providers: [:facebook, :google_oauth2]
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
       user.email = provider_data.info.email
+      user.name = provider_data.info.name
       user.password = Devise.friendly_token[0, 20]
      
     end
   end
+
+  validates :name, presence: true,
+                    length: { minimum: 5 }
+  validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } ,uniqueness: true
+  validates :password,presence: true, length: { in: 6..20 }
+  validates :password_confirmation,presence: true
+  has_one_attached :image
+
 end
