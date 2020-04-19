@@ -8,10 +8,11 @@ class User < ApplicationRecord
 
   def self.create_from_provider_data(provider_data)
     where(provider: provider_data.provider, uid: provider_data.uid).first_or_create do | user |
+      user.provider = provider_data.provider
+      user.uid = provider_data.uid
       user.email = provider_data.info.email
       user.name = provider_data.info.name
       user.password = Devise.friendly_token[0, 20]
-     
     end
   end
 
@@ -19,7 +20,7 @@ class User < ApplicationRecord
                     length: { minimum: 5 }
   validates :email, format: { with: URI::MailTo::EMAIL_REGEXP } ,uniqueness: true
   validates :password,presence: true, length: { in: 6..20 }
-  validates :password_confirmation,presence: true
+  # validates :password_confirmation,presence: true
   has_one_attached :image
 
   has_and_belongs_to_many :friendships,
