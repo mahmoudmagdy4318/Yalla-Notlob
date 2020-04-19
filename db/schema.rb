@@ -33,6 +33,32 @@ ActiveRecord::Schema.define(version: 2020_04_19_004332) do
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
+  create_table "invited_users", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "user_id"
+    t.boolean "joined"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders", force: :cascade do |t|
+    t.integer "order_id"
+    t.integer "created_by"
+    t.date "Order_date"
+    t.string "restaurant"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "orders_details", force: :cascade do |t|
+    t.integer "order_id"
+    t.string "order_item"
+    t.integer "item_price"
+    t.integer "item_quantity"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end  
   create_table "friendships", id: false, force: :cascade do |t|
     t.integer "user_id"
     t.integer "friend_user_id"
