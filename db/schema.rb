@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_19_004332) do
+ActiveRecord::Schema.define(version: 2020_04_19_224713) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -46,6 +46,19 @@ ActiveRecord::Schema.define(version: 2020_04_19_004332) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["user_id"], name: "index_notifications_on_user_id"
+  end
+
+  create_table "order_details", force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id", null: false
+    t.string "item"
+    t.integer "amount"
+    t.integer "price"
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["order_id"], name: "index_order_details_on_order_id"
+    t.index ["user_id"], name: "index_order_details_on_user_id"
   end
 
   create_table "orders", force: :cascade do |t|
@@ -103,4 +116,6 @@ ActiveRecord::Schema.define(version: 2020_04_19_004332) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "notifications", "users"
+  add_foreign_key "order_details", "orders"
+  add_foreign_key "order_details", "users"
 end
