@@ -48,6 +48,7 @@
 
 
 
+
 <div class="container">
   
   <div class="row">
@@ -55,7 +56,21 @@
       
       <div class="lastorderdiv">
       <h3 class="text-success text-center">Latest Orders</h3>
+
+          <div class="dbdata">
+            
+          <% @orderAll.each do |oderuser| %>
           
+          <p>
+                  <%= oderuser.owner %>
+                  : Order at 
+                  <%= oderuser.created_at.strftime("%m/%d/%Y")%>
+                  
+          </p>   
+          
+          <% end %>
+          </div>
+
       </div>
     </div>
     <div class="col-sm-6">
@@ -63,10 +78,24 @@
       <div class="friendsactivitydiv">
       <h3 class="text-success text-center">Friends activity</h3>
       
+      <div class="dbdata">
+      <% @orderAll.each do |oderuser| %>
+          
+        <p>
+                <%= oderuser.owner %>
+                : Has Created An Order From
+                <%= oderuser.restaurant%>
+                
+        </p>   
+        
+        <% end %>
+      </div>        
       </div>
     </div>
   </div>
+
 </div>
+
 
        
 </body>
