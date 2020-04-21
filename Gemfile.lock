@@ -235,11 +235,8 @@ DEPENDENCIES
   capybara (>= 2.15)
   client_side_validations
   devise
-<<<<<<< HEAD
   font-awesome-rails
-=======
   htmlbeautifier
->>>>>>> 35d52c7ae23d3ac22a0221278976ac6c959bfab1
   jbuilder (~> 2.7)
   jquery-rails
   listen (>= 3.0.5, < 3.2)
