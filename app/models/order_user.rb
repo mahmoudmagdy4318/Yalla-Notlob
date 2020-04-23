@@ -1,3 +1,4 @@
-class OrderUser < ActiveRecord::Base
-    self.table_name = "orders_users"
+class OrderUser < ApplicationRecord
+  belongs_to :user
+  belongs_to :order
 end

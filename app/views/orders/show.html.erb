@@ -1,15 +1,15 @@
 <%=render 'navbar/navbar'%>
 <div class="row">
 <div>
-<div class="card text-dark bg-warning mb-3 ml-5 mt-5" style="max-width: 18rem;max-height: 18rem;">
+<div class="card text-white bg-secondary mb-3 ml-5 mt-5" style="max-width: 18rem;max-height: 18rem;">
   <div class="card-header">Invited Friends</div>
   <div class="card-body">
     <h5 class="card-title">
-      There are for
+      There are 
       <%=@invitedUsers.size%>
       invited friends
     </h5>
-    <button class="btn btn-info">
+    <button class="btn btn-info" data-toggle="modal" data-target="#exampleModalCenter2">
             show
     </button>
   </div>
@@ -18,11 +18,11 @@
   <div class="card-header">Joined Friends</div>
   <div class="card-body">
     <h5 class="card-title">
-    There are for
+    There are 
       <%=@joinedUsers.size%>
-      invited friends
+      joined friends
     </h5>
-    <button class="btn btn-warning">
+    <button class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
             show
     </button>
   </div>
@@ -35,7 +35,7 @@
   </div>
 </div>
 <div class="card text-center">
-  <div class="card-header bg-warning">
+  <div class="card-header text-white bg-secondary">
   <strong>
     <%=@order.restaurant%>
   </strong>  
@@ -74,7 +74,7 @@
   </tbody>
 </table>
   </div>
-  <div class="card-footer text-dark bg-warning">
+  <div class="card-footer text-white bg-secondary">
     <%=@order.created_at.strftime("%F  %T")%>
   </div>
 </div>
@@ -89,3 +89,71 @@
 </div>
 
 </div>
+
+<%# modal to show joined users  %>
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-info text-white">
+        <h5 class="modal-title" id="exampleModalCenterTitle">Joined Users</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-info">
+      <div class="row">
+        <%@joinedUsers.each do |j|%>
+          <div class="card mt-3 ml-3 "style="width: 10rem;">
+            <%=image_tag(j.user.image, size:"50x50")%>
+              <div class="card-body">
+                <h5 class="card-title"><%=j.user.name%></h5>
+                <%if current_user.id==@order.owner%>
+                <a href="#" class="btn btn-warning">Remove</a>
+                <%end%>
+              </div>
+            </div>
+        <%end%>
+      </div>
+      </div>
+      <div class="modal-footer bg-info">
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<%# modal to show invited users %>
+<div class="modal fade" id="exampleModalCenter2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle2" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header bg-secondary text-white">
+        <h5 class="modal-title" id="exampleModalCenterTitle2">Invited Users</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body bg-secondary">
+      <div class="row">
+        <%@invitedUsers.each do |i|%>
+            <div class="card mt-3 ml-3 "style="width: 10rem;">
+            <%=image_tag(i.user.image, size:"50x50")%>
+              <div class="card-body">
+                <h5 class="card-title"><%=i.user.name%></h5>
+                <%if current_user.id==@order.owner%>
+                <a href="#" class="btn btn-warning">Remove</a>
+                <%end%>
+              </div>
+            </div>  
+        <%end%>
+      </div>  
+      </div>
+      <div class="modal-footer bg-secondary">
+        <button type="button" class="btn btn-info" data-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<%= javascript_pack_tag 'usersModal' %>

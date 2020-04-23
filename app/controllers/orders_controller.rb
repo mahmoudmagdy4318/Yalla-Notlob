@@ -15,6 +15,6 @@ class OrdersController < ApplicationController
         @orders=OrderDetail.where(order_id: params[:id])
         @invitedUsers=OrderUser.where(order_id: params[:id])
         @joinedUsers=OrderUser.where(order_id: params[:id], joined: true)
-    end
+    end  
       
 end
