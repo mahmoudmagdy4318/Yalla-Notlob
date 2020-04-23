@@ -25,6 +25,9 @@ gem 'bcrypt', '~> 3.1.7'
 #gem 'wdm', '>= 0.1.0'
 gem "font-awesome-rails"
 
+gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate-bootstrap4'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
