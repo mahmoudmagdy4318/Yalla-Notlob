@@ -49,6 +49,7 @@
       <th scope="col">amount</th>
       <th scope="col">price</th>
       <th scope="col">comment</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -68,6 +69,15 @@
       </td>
       <td>
         <%=o.comment%>
+      </td>
+      <td>
+        <%if o.user_id==current_user.id%>
+          <%= link_to 'delete', order_detail_path(o),
+              class: "btn btn-warning",
+               method: :delete,
+               data: { confirm: 'Are you sure?' } 
+          %>
+        <%end%>
       </td>
     </tr>
   <%end%>  
@@ -108,7 +118,11 @@
               <div class="card-body">
                 <h5 class="card-title"><%=j.user.name%></h5>
                 <%if current_user.id==@order.owner%>
-                <a href="#" class="btn btn-warning">Remove</a>
+                <%= link_to 'remove', orders_user_path(j),
+                   class: "btn btn-warning",
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } 
+                %>
                 <%end%>
               </div>
             </div>
@@ -140,7 +154,11 @@
               <div class="card-body">
                 <h5 class="card-title"><%=i.user.name%></h5>
                 <%if current_user.id==@order.owner%>
-                <a href="#" class="btn btn-warning">Remove</a>
+                <%= link_to 'remove', orders_user_path(i),
+                   class: "btn btn-warning",
+                   method: :delete,
+                   data: { confirm: 'Are you sure?' } 
+                %>
                 <%end%>
               </div>
             </div>  

@@ -26,8 +26,15 @@
         <button type="button" class="btn btn-success mr-2">
       Notification<span class="badge badge-light">4</span>
         </button>
-     
-      <button class="btn btn-outline-success my-2 my-sm-0" type="submit">LogOut</button>
+     <% if user_signed_in? %>
+  <li>
+  <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-dark"  %>        
+  </li>
+<% else %>
+  <li>
+  <%= link_to 'Login', new_user_session_path ,class: "btn btn-primary" %>  
+  </li>
+<% end %>
     </form>
   </div>
 </nav>
