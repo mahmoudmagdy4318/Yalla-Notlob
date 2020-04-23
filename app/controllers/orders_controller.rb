@@ -6,7 +6,8 @@ class OrdersController < ApplicationController
     end
     
     def index
-        @orders = Order.all
+        @orders = Order.all.paginate(page: params[:page],per_page:5)
+        @count=OrderUser.group(:order_id).count;
     end
 
     def show 

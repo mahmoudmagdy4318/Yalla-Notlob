@@ -1,15 +1,27 @@
-<table>
-  <tr>
-    <th>Item</th>
-    <th>Amount</th>
-    <th></th>
-  </tr>
- 
-  <% @orders.each do |order| %>
-    <tr>
-      <td><%= order.owner %></td>
-      <td><%= order.restaurant %></td>
-      <td><%= link_to 'Show', order_path(order) %></td>
-    </tr>
-  <% end %>
-</table>
+<div class="row">
+    <div class="w-50 mx-auto">
+      <h1><span class="badge badge-secondary">orders</span></h1>
+      <table class="table table-striped ">
+        <thead>
+          <tr>
+            <th scope="col">Meal</th>
+            <th scope="col">Owner</th>
+            <th scope="col">Restaurant</th>
+            <th scope="col">Invited</th>
+            <th scope="col">Joined</th>
+            <th scope="col">status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @orders.each do |order| %>
+            <tr>
+              <td><%=order.meal%></td>
+              <td><%=order.owner%></td>
+              <td><%=order.restaurant%></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <%= will_paginate @orders,inner_window:2,outer_window:0,renderer: WillPaginate::ActionView::BootstrapLinkRenderer,next_label:"next",previous_label:"previous" %>
+    </div>
+</div>
