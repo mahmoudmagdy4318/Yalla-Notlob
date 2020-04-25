@@ -23,9 +23,10 @@
     </li>
     </ul>
     <form class="form-inline my-2 my-lg-0">
-        <button type="button" class="btn btn-success mr-2">
+        <%# <button type="button" class="btn btn-success mr-2">
       Notification<span class="badge badge-light">4</span>
-        </button>
+        </button> %>
+        <i class="fas fa-bell"></i>
      <% if user_signed_in? %>
   <li>
   <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-dark"  %>        
