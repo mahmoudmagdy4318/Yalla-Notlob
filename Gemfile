@@ -22,11 +22,8 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-#gem 'wdm', '>= 0.1.0'
-gem "font-awesome-rails"
 
-gem 'will_paginate', '~> 3.1.0'
-gem 'will_paginate-bootstrap4'
+gem "font-awesome-rails"
 
 
 # Use Active Storage variant
@@ -74,3 +71,4 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'htmlbeautifier'
 
+gem 'bootstrap_form'

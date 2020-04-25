@@ -8,9 +8,7 @@ require("turbolinks").start();
 require("@rails/activestorage").start();
 require("channels");
 import "bootstrap";
-import "@client-side-validations/client-side-validations";
-import "@fortawesome/fontawesome-free/js/all";
-
+import '@client-side-validations/client-side-validations'
 //= require rails.validation
 //= require jquery
 //= require jquery_ujs
@@ -23,3 +21,4 @@ import "@fortawesome/fontawesome-free/js/all";
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
+
