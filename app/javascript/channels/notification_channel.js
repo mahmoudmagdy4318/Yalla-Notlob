@@ -12,7 +12,8 @@ consumer.subscriptions.create("NotificationChannel", {
 
   received(data) {
     console.log("data:", data);
-    $("#notfdiv").text(data.content);
+    $("#notMenu").append(data.content.body);
+    $("#notCount").text(eval($("#notCount").text()) + 1);
     // Called when there's incoming data on the websocket for this channel
   },
 });
