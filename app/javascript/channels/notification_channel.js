@@ -12,8 +12,18 @@ consumer.subscriptions.create("NotificationChannel", {
 
   received(data) {
     console.log("data:", data);
-    $("#notMenu").append(data.content.body);
-    $("#notCount").text(eval($("#notCount").text()) + 1);
+    let user_id = document.cookie.split("=")[
+      document.cookie.split("=").length - 1
+    ];
+
+    if (user_id == data.content.user_id) {
+      let newNot = `<div>
+      <span class="dropdown-item">${data.content.body}</span>
+      <span><button>${data.content.btn}</button></span>
+      </div>`;
+      $("#notMenu").append(newNot);
+      $("#notCount").text(eval($("#notCount").text()) + 1);
+    }
     // Called when there's incoming data on the websocket for this channel
   },
 });

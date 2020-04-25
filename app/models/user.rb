@@ -29,9 +29,8 @@ class User < ApplicationRecord
       foreign_key: :user_id, 
       association_foreign_key: :friend_user_id
 
-  has_and_belongs_to_many :projects   
   has_many :orders 
-
+  has_many :groups
   has_many :notifications
   has_many :orderDetails
 

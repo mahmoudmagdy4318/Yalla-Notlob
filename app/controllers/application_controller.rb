@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
         @notifications=Notification.all
     end
 
+    before_action :set_user
+
+    def set_user
+        if(current_user)
+            cookies[:id] = current_user.id
+        end
+    end
+
     protected
     def configure_permitted_parameters
         devise_parameter_sanitizer.permit(:sign_up, keys: [:name,:image])
