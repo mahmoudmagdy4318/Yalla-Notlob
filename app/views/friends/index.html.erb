@@ -1,26 +1,23 @@
 <div class="container overflow-auto" style="border-style: dashed; ">
    <h1>Friends</h1>
-   <form accept-charset="UTF-8" action="/users" class="new_user" id="new_user" method="post">
-    <div class="input-group">
-       <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter Your Friend Email">
-      <div class="input-group-append">
-        <button class="btn btn-success btn-outline-secondary" type="button">Add</button>
-      </div>
-    </div>
-  </form>
+   <%= render  "friends/form" %>
+ 
   <div class="container overflow-auto" style="overflow-y: scroll; border-style: dashed;height:400px; width: 60%;margin-top:20px;margin-bottom:20px;justify-content: center;">
     <div class="row ">
     <% @users.each do |user| %>
-        <div class="col-md-6">
+        <div class="col-md-6" style="margin-top:20px;">
           <div class="media">
-              <div class="media-left">
+              <div class="media-left"  >
                 <a href="#">
                 <img class="media-object"  src="https://upload.wikimedia.org/wikipedia/commons/d/d2/Crystal_Clear_kdm_user_female.svg" alt="Smiley face" height="62" width="62" alt="...">
                 </a>
               </div>
               <div class="media-body">
                 <h4 class="media-heading"><%= user.name %></h4>
-                 <%= link_to "Remove", friendship, :method => :delete,class: "btn btn-danger controllers" %>
+                <%= link_to 'Destroy', friend_path(user),
+                    method: :delete,
+                data: { confirm: 'Are you sure?' } %>        
+                   
               </div>
           </div>
         </div>
