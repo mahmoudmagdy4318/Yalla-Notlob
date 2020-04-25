@@ -1,2 +1,0 @@
-class OrdersDetail < ApplicationRecord
-end
