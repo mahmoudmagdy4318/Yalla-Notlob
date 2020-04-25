@@ -30,9 +30,8 @@ class User < ApplicationRecord
       association_foreign_key: :friend_user_id
 
   has_and_belongs_to_many :projects   
-  has_many :orders 
+  has_and_belongs_to_many :orders 
 
   has_many :notifications
-  has_many :orderDetails
 
 end
