@@ -1,0 +1,62 @@
+ <div class="row">
+  <div class="col-lg-12">
+<nav class="navbar navbar-expand-lg navbar-light bg-light mt-0">
+ 
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" href="#">
+      <i class="fa fa-home"></i>
+        Home <span class="sr-only">(current)</span></a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href="#">Friends</a>
+      </li>
+     
+      <li class="nav-item">
+        <a class="nav-link" href="#">Groups</a>
+      </li>
+      <li class="nav-item">
+      <a class="nav-link" href="/orders">Orders</a>
+    </li>
+    </ul>
+    <form class="form-inline my-2 my-lg-0">
+
+        <div class="dropleft">
+        <button type="button" style="display:none;" id="notBtn"
+         class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+          
+        </button>
+        <i class="far fa-bell" id="notBell"  style="font-size:30px; cursor:pointer;"></i>
+          <span class="badge badge-pill badge-danger" id="notCount">1</span>
+        <div class="dropdown-menu" id="notMenu" aria-labelledby="dropdownMenuButton">
+          <%@notifications.each do |n|%>
+          <a class="dropdown-item" href="#"><%=n.body%></a>
+          <%end%>
+        </div>
+        </div>
+        
+
+
+
+        <% if user_signed_in? %>
+          <li>
+          <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger"  %>        
+          </li>
+        <% else %>
+          <li>
+          <%= link_to 'Login', new_user_session_path ,class: "btn btn-primary" %>  
+          </li>
+      <% end %>
+    </form>
+  </div>
+</nav>
+</div>
+</div>
+
+
+<%= javascript_pack_tag 'notify' %>

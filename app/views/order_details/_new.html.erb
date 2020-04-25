@@ -1,0 +1,33 @@
+<%= form_tag order_details_path, method: :post, :class => "form-inline" do  %>
+<div class="row">
+    <%= hidden_field_tag :order_id, @order.id %>
+
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="addon-wrapping">item</span>
+        </div>
+        <%= text_field_tag :item, params[:item] %>
+    </div>  
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="addon-wrapping">amount</span>
+        </div>
+        <%= number_field_tag :amount, params[:amout] %>
+    </div> 
+    <div class="input-group mb-2">
+        <div class="input-group-prepend">
+        <span class="input-group-text" id="addon-wrapping">price</span>
+        </div>
+        <%= number_field_tag :price, params[:price] %>
+    </div> 
+    <div class="input-group mb-2">
+    <div class="input-group-prepend">
+        <span class="input-group-text">comment</span>
+    </div>
+        <%= text_area_tag :comment, params[:comment]%>
+    </div>
+    <div class="ml-2 mt-2">
+        <%= submit_tag "add your order", name: nil, class: "btn btn-primary" %>   
+    </div>    
+</div>
+<% end %>
