@@ -24,10 +24,10 @@
               <td><%=@joined[[order.id,true]]%></td>
               <td><%=order.status%></td>
               <td>
-                <span><%= link_to 'View', order_path(order),{:class => "btn btn-primary" }%></span>
+                <span><%= link_to 'View', order_path(order),{:class => "btn btn-primary btn-sm" }%></span>
                 <%if(current_user&&current_user.id==order.owner&&order.status!="finished") %>
                 <span><%= button_to "Finish", {:controller => "orders", :action => "is_finished", :id => order.id},{:class => "btn btn-success btn-sm mt-1"} %></span>
-                <span class="btn btn-danger btn-sm mt-1"><%= link_to 'Cancel', order_path(order),method: :delete,data: { confirm: 'Are you sure?' } %></span>
+                <span><%= link_to 'Cancel', order_path(order),class: "btn btn-danger btn-sm mt-1",method: :delete,data: { confirm: 'Are you sure?' } %></span>
                 <%end%>  
               </td>
             </tr>
