@@ -1,5 +1,6 @@
 $(document).ready(() => {
-  $("#notBell").on("click", () => {
+  $("#notBell").on("click", (e) => {
+    e.stopPropagation();
     $("#notBtn").click();
   });
 });

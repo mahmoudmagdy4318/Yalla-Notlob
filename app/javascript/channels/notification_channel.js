@@ -17,9 +17,9 @@ consumer.subscriptions.create("NotificationChannel", {
     ];
 
     if (user_id == data.content.user_id) {
-      let newNot = `<div>
+      let newNot = `<div class="row">
       <span class="dropdown-item">${data.content.body}</span>
-      <span><button>${data.content.btn}</button></span>
+      <span><a class="btn btn-info" style="cursor:pointer;" href="/orders/${data.content.order_id}">${data.content.btn}</a></span>
       </div>`;
       $("#notMenu").append(newNot);
       $("#notCount").text(eval($("#notCount").text()) + 1);

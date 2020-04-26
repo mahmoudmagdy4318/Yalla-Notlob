@@ -8,7 +8,8 @@ class OrderDetailsController < ApplicationController
              amount: params[:amount],price: params[:price],comment: params[:comment])
         if @orderDetails.save
 
-            @notification=Notification.create(body: params[:item] + "is recieved",user_id: 1)
+            @notification=Notification.create(body: current_user.name + " has invited you to his order",
+                user_id: 2, order_id: 1 , btn: "join")
             ActionCable.server.broadcast 'notification_channel', content: @notification
 
             redirect_to request.referrer
