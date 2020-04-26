@@ -22,7 +22,7 @@ gem 'jbuilder', '~> 2.7'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 gem 'bcrypt', '~> 3.1.7'
-#gem 'wdm', '>= 0.1.0'
+gem 'wdm', '>= 0.1.0'
 gem "font-awesome-rails"
 
 gem 'will_paginate', '~> 3.1.0'
@@ -66,7 +66,7 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 #devise gem for authentication
 gem 'devise'
 
-gem 'htmlbeautifier'
+#gem 'htmlbeautifier'
 
 # Use Omniauth Facebook plugin
 gem 'omniauth-facebook', '~> 4.0'

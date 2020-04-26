@@ -1,3 +1,3 @@
 class Group < ApplicationRecord
-  hans_many :users
+  has_many :users
 end
