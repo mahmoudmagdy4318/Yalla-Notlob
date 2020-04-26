@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_04_24_112408) do
+ActiveRecord::Schema.define(version: 2020_04_25_202242) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -40,11 +40,28 @@ ActiveRecord::Schema.define(version: 2020_04_24_112408) do
     t.index ["user_id", "friend_user_id"], name: "index_friendships_on_user_id_and_friend_user_id", unique: true
   end
 
+  create_table "group_users", force: :cascade do |t|
+    t.integer "group_id", null: false
+    t.integer "user_id", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["group_id"], name: "index_group_users_on_group_id"
+    t.index ["user_id"], name: "index_group_users_on_user_id"
+  end
+
+  create_table "groups", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "owner"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.text "body"
     t.integer "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "btn"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
@@ -80,20 +97,6 @@ ActiveRecord::Schema.define(version: 2020_04_24_112408) do
     t.integer "meal"
   end
 
-  create_table "projects", force: :cascade do |t|
-    t.string "name"
-    t.string "owner"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "projects_users", id: false, force: :cascade do |t|
-    t.integer "project_id", null: false
-    t.integer "user_id", null: false
-    t.index ["project_id"], name: "index_projects_users_on_project_id"
-    t.index ["user_id"], name: "index_projects_users_on_user_id"
-  end
-
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"
@@ -119,6 +122,8 @@ ActiveRecord::Schema.define(version: 2020_04_24_112408) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "group_users", "groups"
+  add_foreign_key "group_users", "users"
   add_foreign_key "notifications", "users"
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "users"

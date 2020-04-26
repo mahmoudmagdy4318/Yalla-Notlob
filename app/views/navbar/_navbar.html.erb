@@ -45,7 +45,11 @@
           <span class="badge badge-pill badge-danger" id="notCount">1</span>
         <div class="dropdown-menu" id="notMenu" aria-labelledby="dropdownMenuButton">
           <%@notifications.each do |n|%>
-          <a class="dropdown-item" href="#"><%=n.body%></a>
+          <div>
+          <span class="dropdown-item"><%=n.body%></span>
+          <span><button><%=n.btn%></button></span>
+          </div>
+          
           <%end%>
         </div>
         </div>
