@@ -24,7 +24,17 @@
       <a class="nav-link" href="/orders">Orders</a>
     </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <%if(current_user && current_user.image.present?)%>
+      <a href="/users/edit" class="btn btn-outline-success mr-3 btn-sm"><%=current_user.name%></a>
+      <%=image_tag(current_user.image, size:"60x60",class: "rounded-circle mr-3")%>
+    <%elsif current_user%>
+      <a href="/users/edit" class="btn btn-outline-success mr-3 btn-sm"><%=current_user.name%></a>
+      <%=image_tag("default.png", size:"60x60",class: "rounded-circle mr-3")%>
+    <%end%>
+      <form class="form-inline my-2 my-lg-0">
+    
+
+        
 
         <div class="dropleft">
         <button type="button" style="display:none;" id="notBtn"
@@ -46,9 +56,6 @@
         </div>
         </div>
         
-
-
-
         <% if user_signed_in? %>
           <li>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger"  %>        
