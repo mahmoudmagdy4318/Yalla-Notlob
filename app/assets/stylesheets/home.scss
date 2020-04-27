@@ -2,6 +2,12 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+.friendsactivitydiv {
+  width: 450px;
+  height: 500px;
+  margin: 30px auto;
+  overflow: scroll;
+}
 .lastorderdiv {
   width: 450px;
   height: 500px;
@@ -17,8 +23,5 @@
   padding: 5px;
   font-size: 20pt;
 
-  width: 450px;
-  height: 500px;
-  margin: 30px auto;
-  overflow: scroll;
+  color: gray;
 }

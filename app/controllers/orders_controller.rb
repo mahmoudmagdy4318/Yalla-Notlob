@@ -1,20 +1,21 @@
 class OrdersController < ApplicationController
     def new
-        friends1=Friend.where(friend_user_id: current_user.id)
-        friends2=Friend.where(user_id: current_user.id)
-        if friends1[0] && friends2[0]           
-            @friends=friends1+friends2
+        # friends1=Friend.where(friend_user_id: current_user.id)
+        @friends=Friend.where(user_id: current_user.id)  
+        # if friends1[0] && friends2[0]           
+        #     @friends=friends1+friends2
 
-        elsif friends1[0]
-            @friends=friends1
+        # elsif friends1[0]
+        #     @friends=friends1
 
-        elsif friends2[0]
-            @friends=friends2
-        else
-            @friends=nil
-        end
+        # elsif friends2[0]
+        #     @friends=friends2
+        # else
+        #     @friends=nil
+        # end
         @group=Group.where(owner:current_user.id)
-        
+
+  
     end
 
     def create
