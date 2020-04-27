@@ -4,4 +4,5 @@ class Order < ApplicationRecord
     has_many :users
     has_many :orderDetails
     has_many :notifications
+    has_one_attached :menu
 end

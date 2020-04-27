@@ -1,9 +1,60 @@
 class OrdersController < ApplicationController
     def new
+        friends1=Friend.where(friend_user_id: current_user.id)
+        friends2=Friend.where(user_id: current_user.id)
+        if friends1[0] && friends2[0]           
+            @friends=friends1+friends2
+
+        elsif friends1[0]
+            @friends=friends1
+
+        elsif friends2[0]
+            @friends=friends2
+        else
+            @friends=nil
+        end
+        @group=Group.where(owner:current_user.id)
+        
     end
-   
+
     def create
-    end
+        puts "alaa", params
+        invited_friends=[]
+        @order = Order.create(meal:params[:meal].to_i,restaurant:params[:restaurant],owner:current_user.id,status:0)
+        if @order.save 
+            orderId=@order.id
+            if params[:invited_friends].length > 0 || params[:invited_groups]
+                if params[:invited_friends]
+                    invited_friends=params[:invited_friends].split(":").map!{|e| e.to_i}.to_set
+                    puts "loloooooooooo",params[:invited_friends]
+                    invited_friends.each {|friend|  
+                        
+                        orderuser=OrderUser.create(order_id:orderId,user_id:friend)
+                        orderuser.save
+                }
+                end
+                if params[:invited_groups]
+                    params[:invited_groups].each{ |group|
+                        users=GroupUser.where(group_id:group.to_i)
+                        
+                        users.each{|user|
+                            unless invited_friends.include?(user.user_id)
+                                grouporderuser=OrderUser.create(order_id:orderId,user_id:user.user_id)
+                                grouporderuser.save
+                            end
+                        }    
+                    }
+                end
+                redirect_to @order
+            else
+                redirect_to new_order_path, alert: "please invite friends!"
+            end
+        else
+            redirect_to new_order_path , alert: " order not saved!"
+        end
+        
+    end 
+    
     
     def index
         @orders = Order.all.paginate(page: params[:page],per_page:5);
