@@ -19,26 +19,33 @@ consumer.subscriptions.create("NotificationChannel", {
     if (user_id == data.content.user_id) {
       if (data.content.btn == "join") {
         newNot = `
-      <div class="row bg-secondary">
-        <span class="dropdown-item">${data.content.body}</span>
-        <span>
-              <span class="notifySpan" >${data.content.id}<span>
-              <a class="btn btn-info joinBtn" id=${data.content.id} style="cursor:pointer;" 
-                 >${data.content.btn}
+      <div class="container bg-secondary text-light>  
+      <strong>
+      ${data.content.created_at}
+      <strong>
+      <div class="row">
+        <span class="dropdown-item">
+              ${data.content.body}
+              <a class="btn btn-info joinBtn" id=${data.content.id} style="cursor:pointer;" >
+              ${data.content.btn}
               </a>
         </span>
       </div>
+      </div>
       `;
       } else if (data.content.btn == "show") {
+        console.log(data.content);
         newNot = `
-      <div class="row bg-secondary">
-        <span class="dropdown-item">${data.content.body}</span>
-        <span>
-              <span class="notifySpan">${data.content.id}<span>
-              <a class="btn btn-secondary notifyBtn" style="cursor:pointer;" 
+      <div class="container bg-secondary text-light>  
+      <strong>${data.content.created_at}<strong>
+      <div class="row">
+        <span class="dropdown-item">
+              ${data.content.body}
+              <a class="btn btn-info text-light notifyBtn" style="cursor:pointer;" 
                  href="/orders/${data.content.order_id}">${data.content.btn}
               </a>
-        </span>
+        </span>      
+      </div>
       </div>
       `;
       }
