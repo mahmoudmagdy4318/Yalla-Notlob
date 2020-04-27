@@ -97,6 +97,28 @@ ActiveRecord::Schema.define(version: 2020_04_25_202242) do
     t.integer "meal"
   end
 
+  create_table "orders_users", id: false, force: :cascade do |t|
+    t.integer "order_id", null: false
+    t.integer "user_id", null: false
+    t.boolean "joined", default: false
+    t.index ["order_id"], name: "index_orders_users_on_order_id"
+    t.index ["user_id"], name: "index_orders_users_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string "name"
+    t.string "owner"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "projects_users", id: false, force: :cascade do |t|
+    t.integer "project_id", null: false
+    t.integer "user_id", null: false
+    t.index ["project_id"], name: "index_projects_users_on_project_id"
+    t.index ["user_id"], name: "index_projects_users_on_user_id"
+  end
+
   create_table "sessions", force: :cascade do |t|
     t.string "session_id", null: false
     t.text "data"

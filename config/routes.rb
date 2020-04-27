@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'groups/index'
   get 'home/index'
   
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
@@ -7,7 +8,8 @@ Rails.application.routes.draw do
   devise_for :users, controllers: { omniauth_callbacks: 'users/omniauth' }
 
   resources :orders
-
+  resources :groups
+  resources :groups_users
   resources :order_details
 
   resources :orders_users
