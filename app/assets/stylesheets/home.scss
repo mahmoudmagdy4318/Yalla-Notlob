@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
 
+<<<<<<< HEAD
 .friendsactivitydiv {
   width: 450px;
   height: 500px;
@@ -13,15 +14,38 @@
   height: 500px;
   margin: 30px auto;
   overflow: scroll;
+=======
+.lastorderdiv{
+
+    width:450px;
+    height: 500px;
+    margin: 30px auto;
+    overflow: scroll;
+>>>>>>> 88c851a41482a8e06de5bdc1b9ff04e31aa94b20
 }
 
-.badge {
-  margin: 30px auto;
+.badge{
+    margin: 30px auto;
 }
 
-.dbdata p {
-  padding: 5px;
-  font-size: 20pt;
+.friendsactivitydiv{
 
+<<<<<<< HEAD
   color: gray;
+=======
+    width: 450px;
+    height: 500px;
+    margin: 30px auto;
+    overflow: scroll;
+>>>>>>> 88c851a41482a8e06de5bdc1b9ff04e31aa94b20
 }
+
+
+.dbdata p{
+
+    padding: 5px ;
+    font-size: 20pt;
+    color: gray;
+}
+
+
