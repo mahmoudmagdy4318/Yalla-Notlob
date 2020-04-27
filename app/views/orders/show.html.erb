@@ -90,9 +90,15 @@
 </div>
     <div class="card mt-5">
       <div class="card-body bg-info">
-        <h5 class="card-title">add your order</h5>
-        <div class="container"> 
+        <%if @order.status=="waiting"%> 
+         <h5 class="card-title">add your order</h5>
+        <%end%>
+        <div class="container">
+            <%if @order.status=="waiting"%> 
              <%= render 'order_details/new'%>
+            <%else%>
+             <strong class="text-light">The order is approved you can't add to it now</strong> 
+            <%end%> 
         </div> 
       </div>
     </div>
@@ -114,7 +120,11 @@
       <div class="row">
         <%@joinedUsers.each do |j|%>
           <div class="card mt-3 ml-3 "style="width: 10rem;">
+            <%if j.user.image.present?%>
             <%=image_tag(j.user.image, size:"50x50")%>
+            <%else%>
+            <%=image_tag("default.png", size:"60x60",class: "rounded-circle mr-3")%>
+            <%end%>
               <div class="card-body">
                 <h5 class="card-title"><%=j.user.name%></h5>
                 <%if current_user.id==@order.owner%>
@@ -150,7 +160,11 @@
       <div class="row">
         <%@invitedUsers.each do |i|%>
             <div class="card mt-3 ml-3 "style="width: 10rem;">
-            <%=image_tag(i.user.image, size:"50x50")%>
+            <%if i.user.image.present?%>
+             <%=image_tag(i.user.image, size:"50x50")%>
+            <%else%>
+             <%=image_tag("default.png", size:"60x60",class: "rounded-circle mr-3")%>
+            <%end%>
               <div class="card-body">
                 <h5 class="card-title"><%=i.user.name%></h5>
                 <%if current_user.id==@order.owner%>

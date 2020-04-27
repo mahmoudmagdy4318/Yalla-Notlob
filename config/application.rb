@@ -14,7 +14,7 @@ module YallaNotlob
 
     #active default timezone
     config.active_record.default_timezone = :local
-    # config.time_zone = 'Eastern European Standard Time'
+    config.time_zone = 'Cairo'
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration can go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded after loading

@@ -3,7 +3,12 @@ class ApplicationController < ActionController::Base
   
     before_action :get_notifications
     def get_notifications
-        @notifications=Notification.all
+        if current_user
+            @notifications=Notification.where(user_id: current_user.id)
+            @unseen=Notification.where(user_id: current_user.id, seen: false).size
+        else
+            @notifications=[]    
+        end
     end
 
     before_action :set_user

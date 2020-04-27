@@ -15,12 +15,33 @@ consumer.subscriptions.create("NotificationChannel", {
     let user_id = document.cookie.split("=")[
       document.cookie.split("=").length - 1
     ];
-
+    let newNot;
     if (user_id == data.content.user_id) {
-      let newNot = `<div class="row">
-      <span class="dropdown-item">${data.content.body}</span>
-      <span><a class="btn btn-info" style="cursor:pointer;" href="/orders/${data.content.order_id}">${data.content.btn}</a></span>
-      </div>`;
+      if (data.content.btn == "join") {
+        newNot = `
+      <div class="row bg-secondary">
+        <span class="dropdown-item">${data.content.body}</span>
+        <span>
+              <span class="notifySpan" >${data.content.id}<span>
+              <a class="btn btn-info joinBtn" id=${data.content.id} style="cursor:pointer;" 
+                 >${data.content.btn}
+              </a>
+        </span>
+      </div>
+      `;
+      } else if (data.content.btn == "show") {
+        newNot = `
+      <div class="row bg-secondary">
+        <span class="dropdown-item">${data.content.body}</span>
+        <span>
+              <span class="notifySpan">${data.content.id}<span>
+              <a class="btn btn-secondary notifyBtn" style="cursor:pointer;" 
+                 href="/orders/${data.content.order_id}">${data.content.btn}
+              </a>
+        </span>
+      </div>
+      `;
+      }
       $("#notMenu").append(newNot);
       $("#notCount").text(eval($("#notCount").text()) + 1);
     }

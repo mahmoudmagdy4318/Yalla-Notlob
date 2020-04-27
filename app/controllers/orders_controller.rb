@@ -12,10 +12,15 @@ class OrdersController < ApplicationController
     end
 
     def show 
-        @order=Order.find_by_id(params[:id])
-        @orders=OrderDetail.where(order_id: params[:id])
-        @invitedUsers=OrderUser.where(order_id: params[:id])
-        @joinedUsers=OrderUser.where(order_id: params[:id], joined: true)
+        @checkOrder=OrderUser.where(order_id: params[:id], user_id: current_user.id).size
+        if @checkOrder > 0 || Order.find(params[:id]).owner == current_user.id 
+            @order=Order.find_by_id(params[:id])
+            @orders=OrderDetail.where(order_id: params[:id])
+            @invitedUsers=OrderUser.where(order_id: params[:id])
+            @joinedUsers=OrderUser.where(order_id: params[:id], joined: true)
+        else
+            redirect_to home_index_path , alert: "You are not included in this order!"
+        end      
     end  
 
     def destroy
