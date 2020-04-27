@@ -1,5 +1,4 @@
 class GroupsUsersController  < ApplicationController
-
   def new
     puts "heeeheheheh"
   end
@@ -12,7 +11,9 @@ class GroupsUsersController  < ApplicationController
       puts params
       @selected_group = Group.find_by(id: params[:id])
       @added_user = User.find_by(email: params[:user_email])
+      if @added_user
       @isinGroup=GroupUser.where(user_id:@added_user.id,group_id:@selected_group.id)
+      end
       if @added_user
         puts @isinGroup
         if @isinGroup.size ==0
