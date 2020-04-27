@@ -3,4 +3,5 @@ class Order < ApplicationRecord
     enum meal: [:breakfast, :lunch, :dinner]
     has_many :users
     has_many :orderDetails
+    has_many :notifications
 end

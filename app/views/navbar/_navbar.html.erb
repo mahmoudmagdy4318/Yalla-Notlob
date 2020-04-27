@@ -24,7 +24,17 @@
       <a class="nav-link" href="/orders">Orders</a>
     </li>
     </ul>
-    <form class="form-inline my-2 my-lg-0">
+    <%if(current_user && current_user.image.present?)%>
+      <a href="/users/edit" class="btn btn-outline-success mr-3 btn-sm"><%=current_user.name%></a>
+      <%=image_tag(current_user.image, size:"60x60",class: "rounded-circle mr-3")%>
+    <%elsif current_user%>
+      <a href="/users/edit" class="btn btn-outline-success mr-3 btn-sm"><%=current_user.name%></a>
+      <%=image_tag("default.png", size:"60x60",class: "rounded-circle mr-3")%>
+    <%end%>
+      <form class="form-inline my-2 my-lg-0">
+    
+
+        
 
         <div class="dropleft">
         <button type="button" style="display:none;" id="notBtn"
@@ -35,18 +45,17 @@
           <span class="badge badge-pill badge-danger" id="notCount">1</span>
         <div class="dropdown-menu" id="notMenu" aria-labelledby="dropdownMenuButton">
           <%@notifications.each do |n|%>
-          <div>
-          <span class="dropdown-item"><%=n.body%></span>
-          <span><button><%=n.btn%></button></span>
+          <div class="row">
+          <span class="dropdown-item">
+          <%=n.body%>
+          <%=link_to n.btn ,order_path(n.order) , class: "btn btn-info" %>          
+          </span>
           </div>
           
           <%end%>
         </div>
         </div>
         
-
-
-
         <% if user_signed_in? %>
           <li>
           <%= link_to 'Logout', destroy_user_session_path, method: :delete, class: "btn btn-danger"  %>        

@@ -1,5 +1,40 @@
-
 <html>
+<<<<<<< HEAD
+  <head>
+    <link rel="stylesheet" href="../../app/assets/stylesheets/home.scss" />
+  </head>
+  <body>
+    <%=render 'navbar/navbar'%>
+    <div class="container">
+      <div class="row">
+        <div class="col-sm-6">
+          <div class="lastorderdiv">
+          <h2><span class="badge badge-secondary mb-0">Latest Orders</span></h2>
+            <div class="dbdata">
+              <ul class="list-group">
+                <% @orders.each do |order| %>
+                <li class="list-group-item disabled"><%= order.owner.name %> : Order at <%=
+                  oderuser.created_at.strftime("%m/%d/%Y")%></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="col-sm-6">
+          <div class="friendsactivitydiv">
+            <h2><span class="badge badge-secondary mb-0">Friends Activity</span></h2>
+             
+            <div class="dbdata">
+              <ul class="list-group">
+                <% @orders.each do |oderuser| %>
+                <li class="list-group-item disabled"><%= oderuser.owner %> : Has Created An Order From <%=
+                  oderuser.restaurant%></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+        </div>
+=======
 <head>
 
 <link rel="stylesheet" href="../../app/assets/stylesheets/home.scss">
@@ -18,19 +53,20 @@
       <div class="lastorderdiv">
       <h3 class="text-success text-center">Latest Orders</h3>
 
-          <div class="dbdata">
-            
-          <% @orderAll.each do |oderuser| %>
-          
-          <p>
-                  <%= oderuser.owner %>
-                  : Order at 
-                  <%# <%= oderuser.created_at.strftime("%m/%d/%Y")%> %>
+                  <div class="dbdata">
+                    
+                  <% @orderAll.each do |oderuser| %>
                   
-          </p>   
-          
-          <% end %>
-          </div>
+                        <p>
+                                <%= oderuser.meal %>
+                                : Order at 
+                              <%= oderuser.created_at.strftime("%m/%d/%Y")%>
+                                
+                        </p>   
+                        
+                  <% end %>
+                  
+                  </div>
 
       </div>
     </div>
@@ -51,15 +87,8 @@
         
         <% end %>
       </div>        
+>>>>>>> 3d4ef608056ac4b0983dde348bb7c3d101268344
       </div>
     </div>
-  </div>
-
-</div>
-
-
-       
-</body>
+  </body>
 </html>
-
-
