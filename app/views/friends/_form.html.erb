@@ -1,0 +1,10 @@
+<%= bootstrap_form_for(Friend.new) do |f| %>
+
+<div class="form-group">
+    <%= f.label :"Your Friend Email" %><br>
+    <%= f.email_field :"friend_user_id" ,class:"form-control" %>
+     <%= f.submit "Add",class:"btn btn-success"%> 
+  </div>
+
+<% end %>
+ 

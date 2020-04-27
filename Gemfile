@@ -74,3 +74,5 @@ gem 'omniauth-facebook', '~> 4.0'
 gem 'omniauth-google-oauth2', '~> 0.4.1'
 gem 'htmlbeautifier'
 
+gem 'bootstrap_form'
+gem 'record_tag_helper'

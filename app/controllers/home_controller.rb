@@ -1,8 +1,7 @@
 class HomeController < ApplicationController
 
   def index
-    @orderAll = Order.all.order(:created_at).reverse
-    
+    @orders = Order.all.order(:created_at).reverse
   end
 
   respond_to :js, :json, :html

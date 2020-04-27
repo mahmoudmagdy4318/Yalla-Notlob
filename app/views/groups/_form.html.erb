@@ -1,0 +1,21 @@
+<div class="panel-body col-8">
+      <h2>Friends List</h2>
+      <div class="myBorder">
+      <div style="display:<%=@class%>">
+        <%= form_tag(groups_users_path, method: "post",class: "form-inline") do %>
+      <div class="col-auto my-4">
+            <label>
+              Enter Your Friend Name
+            </label>
+      </div >
+      
+        <%= text_field_tag(:user_email, "", class: "form-control col-5")%>
+        <%= hidden_field_tag 'id', params[:id]  %>
+        <div class="col-auto my-1">
+
+          <%= submit_tag("Add Friend",class: "btn btn-success") %>
+        </div>
+      </div>
+
+      <% end %>
+ </div>
