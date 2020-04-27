@@ -21,6 +21,7 @@ class OrdersController < ApplicationController
         puts "alaa", params
         invited_friends=[]
         @order = Order.create(meal:params[:meal].to_i,restaurant:params[:restaurant],owner:current_user.id,status:0)
+        @username=User.find(@order.owner).name
         if @order.save 
             orderId=@order.id
             if params[:invited_friends].length > 0 || params[:invited_groups]
@@ -31,6 +32,11 @@ class OrdersController < ApplicationController
                         
                         orderuser=OrderUser.create(order_id:orderId,user_id:friend)
                         orderuser.save
+
+                        @notification=Notification.create(body:@username  + " has invited you to join an order",
+                        user_id: friend, order_id: orderId , btn: "join", seen: "false")
+                        ActionCable.server.broadcast 'notification_channel', content: @notification
+            
                 }
                 end
                 if params[:invited_groups]
@@ -41,6 +47,11 @@ class OrdersController < ApplicationController
                             unless invited_friends.include?(user.user_id)
                                 grouporderuser=OrderUser.create(order_id:orderId,user_id:user.user_id)
                                 grouporderuser.save
+
+                                @notification2=Notification.create(body:@username  + " has invited you to join an order",
+                                user_id: user.user_id, order_id: orderId , btn: "join", seen: "false")
+                                ActionCable.server.broadcast 'notification_channel', content: @notification2
+        
                             end
                         }    
                     }
