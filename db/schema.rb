@@ -12,11 +12,14 @@
 
 ActiveRecord::Schema.define(version: 2020_04_27_032407) do
 
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
-    t.integer "record_id", null: false
-    t.integer "blob_id", null: false
+    t.bigint "record_id", null: false
+    t.bigint "blob_id", null: false
     t.datetime "created_at", null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
@@ -41,8 +44,8 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
   end
 
   create_table "group_users", force: :cascade do |t|
-    t.integer "group_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "group_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["group_id"], name: "index_group_users_on_group_id"
@@ -58,19 +61,19 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
 
   create_table "notifications", force: :cascade do |t|
     t.text "body"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "btn"
-    t.integer "order_id"
+    t.bigint "order_id"
     t.boolean "seen"
     t.index ["order_id"], name: "index_notifications_on_order_id"
     t.index ["user_id"], name: "index_notifications_on_user_id"
   end
 
   create_table "order_details", force: :cascade do |t|
-    t.integer "order_id", null: false
-    t.integer "user_id", null: false
+    t.bigint "order_id", null: false
+    t.bigint "user_id", null: false
     t.string "item"
     t.integer "amount"
     t.integer "price"
@@ -82,8 +85,8 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
   end
 
   create_table "order_users", force: :cascade do |t|
-    t.integer "user_id", null: false
-    t.integer "order_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "order_id", null: false
     t.boolean "joined"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -92,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "owner"
+    t.string "owner"
     t.string "restaurant"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
@@ -132,6 +135,5 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
   add_foreign_key "order_details", "orders"
   add_foreign_key "order_details", "users"
   add_foreign_key "order_users", "orders"
-  add_foreign_key "order_users", "orders", on_delete: :cascade
   add_foreign_key "order_users", "users"
 end

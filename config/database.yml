@@ -12,11 +12,11 @@ default: &default
 development:
   <<: *default
   adapter: postgresql
-  HOST: ec2-34-200-116-132.compute-1.amazonaws.com
+  host: <%= ENV['HOST'] %>
   database: <%= ENV['DATABASE'] %>
-  username: <%= ENV['USER'] %>
+  username: <%= ENV['DATABASE_USER'] %>
   password: <%= ENV['PASSWORD'] %>
-  PORT: <%= ENV['PORT']%>
+  port: <%= ENV['DATABASE_PORT']%>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
