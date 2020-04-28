@@ -19,7 +19,7 @@ consumer.subscriptions.create("NotificationChannel", {
     if (user_id == data.content.user_id) {
       if (data.content.btn == "join") {
         newNot = `
-      <div class="container bg-secondary text-light>  
+      <div class="container bg-secondary text-light">  
       <strong>
       ${data.content.created_at}
       <strong>
@@ -36,7 +36,7 @@ consumer.subscriptions.create("NotificationChannel", {
       } else if (data.content.btn == "show") {
         console.log(data.content);
         newNot = `
-      <div class="container bg-secondary text-light>  
+      <div class="container bg-secondary text-light">  
       <strong>${data.content.created_at}<strong>
       <div class="row">
         <span class="dropdown-item">
@@ -52,6 +52,31 @@ consumer.subscriptions.create("NotificationChannel", {
       $("#notMenu").append(newNot);
       $("#notCount").text(eval($("#notCount").text()) + 1);
     }
+
+    $(".joinBtn").on("click", (e) => {
+      console.log(e.target.id);
+      let user_id = document.cookie.split("=")[
+        document.cookie.split("=").length - 1
+      ];
+      $.ajax({
+        url: "/notification/join",
+        type: "GET",
+        dataType: "json",
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader(
+            "X-CSRF-Token",
+            $('meta[name="csrf-token"]').attr("content")
+          );
+        },
+        data: { id: e.target.id, user_id: user_id },
+        success: function (data) {
+          window.location.href = `/orders/${data.success}`;
+        },
+        error: function (err) {
+          console.log("erororor");
+        },
+      });
+    });
     // Called when there's incoming data on the websocket for this channel
   },
 });

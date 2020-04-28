@@ -95,7 +95,7 @@ ActiveRecord::Schema.define(version: 2020_04_27_032407) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.string "owner"
+    t.integer "owner"
     t.string "restaurant"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
