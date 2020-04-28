@@ -31,8 +31,7 @@ class OrdersController < ApplicationController
                     puts "loloooooooooo",params[:invited_friends]
                     invited_friends.each {|friend|  
                         
-                        orderuser=OrderUser.create(order_id:orderId,user_id:friend)
-                        orderuser.save
+                        OrderUser.create(order_id:orderId,user_id:friend)
 
                         @notification=Notification.create(body:@username  + " has invited you to join an order",
                         user_id: friend, order_id: orderId , btn: "join", seen: "false")
@@ -46,8 +45,7 @@ class OrdersController < ApplicationController
                         
                         users.each{|user|
                             unless invited_friends.include?(user.user_id)
-                                grouporderuser=OrderUser.create(order_id:orderId,user_id:user.user_id)
-                                grouporderuser.save
+                                OrderUser.create(order_id:orderId,user_id:user.user_id)
 
                                 @notification2=Notification.create(body:@username  + " has invited you to join an order",
                                 user_id: user.user_id, order_id: orderId , btn: "join", seen: "false")
@@ -87,6 +85,8 @@ class OrdersController < ApplicationController
     end  
 
     def destroy
+        OrderUser.where(order_id:params[:id]).destroy_all
+        Notification.where(order_id:params[:id]).destroy_all
         @order = Order.find(params[:id])
         @order.destroy
         redirect_to orders_path

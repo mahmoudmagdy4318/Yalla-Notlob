@@ -76,3 +76,5 @@ gem 'htmlbeautifier'
 
 gem 'bootstrap_form'
 gem 'record_tag_helper'
+
+gem 'pg'

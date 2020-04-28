@@ -7,7 +7,8 @@ class NotificationController < ApplicationController
       render json: {success: "success"}
     end
 
-    def join 
+    def join
+        puts "######################################################################## .......###################" 
         @id = params[:id]
         @userId=params[:user_id]
 
