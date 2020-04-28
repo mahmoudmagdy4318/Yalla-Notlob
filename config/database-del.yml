@@ -28,4 +28,8 @@ test:
 
 production:
   <<: *default
-  database: db/production.sqlite3
+  host: <%= ENV['HOST'] %>
+  database: <%= ENV['DATABASE'] %>
+  username: <%= ENV['DATABASE_USER'] %>
+  password: <%= ENV['PASSWORD'] %>
+  port: <%= ENV['DATABASE_PORT']%>
