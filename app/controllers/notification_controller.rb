@@ -15,7 +15,7 @@ class NotificationController < ApplicationController
         @username=User.find(@userId).name
         @orderOwner=Notification.find(@id).order.owner
         @order=Notification.find(@id).order_id
-        OrderUser.where(user_id: @userId, order_id: Order).update_all(joined: true)
+        OrderUser.where(user_id: @userId, order_id: @order).update_all(joined: true)
 
         @notification=Notification.create(body: @username + " has accepted to join your order",
             user_id: @orderOwner, order_id: @order , btn: "show", seen: "false")

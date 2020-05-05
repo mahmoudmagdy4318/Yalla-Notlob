@@ -151,6 +151,7 @@ GEM
       omniauth (~> 1.9)
     orm_adapter (0.5.0)
     pg (1.2.3)
+    pg (1.2.3-x64-mingw32)
     public_suffix (4.0.4)
     puma (4.3.3)
       nio4r (~> 2.0)
@@ -191,6 +192,7 @@ GEM
       ffi (~> 1.0)
     record_tag_helper (1.0.1)
       actionview (>= 5)
+    redis (4.1.4)
     regexp_parser (1.7.0)
     responders (3.0.0)
       actionpack (>= 5.0)
@@ -223,7 +225,6 @@ GEM
       actionpack (>= 4.0)
       activesupport (>= 4.0)
       sprockets (>= 3.0.0)
-    sqlite3 (1.4.2)
     thor (1.0.1)
     thread_safe (0.3.6)
     tilt (2.0.10)
@@ -281,11 +282,11 @@ DEPENDENCIES
   puma (~> 4.1)
   rails (~> 6.0.2, >= 6.0.2.2)
   record_tag_helper
+  redis (~> 4.0)
   sass-rails (>= 6)
   selenium-webdriver
   spring
   spring-watcher-listen (~> 2.0.0)
-  sqlite3 (~> 1.4)
   turbolinks (~> 5)
   tzinfo-data
   web-console (>= 3.3.0)

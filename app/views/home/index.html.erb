@@ -12,8 +12,8 @@
             <div class="dbdata">
               <ul class="list-group">
                 <% @orders.each do |order| %>
-                <li class="list-group-item disabled"><%= order['name'] %> : Order at <%=
-                  order['created_at']%></li>
+                <li class="list-group-item disabled">Order from <%=order.restaurant%> at <%=
+                  order['created_at'].strftime("%F  %T")%></li>
                 <% end %>
               </ul>
             </div>
